@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             interval = setInterval(() => {
                 index = (index + 1) % totalImages;
                 inner.style.transform = `translateX(-${index * 100}%)`;
-            }, 3000); // Intervalo entre cada foto
+            }, 2000); // Intervalo entre cada foto
         };
 
         const stopCarousel = () => {
@@ -44,6 +44,7 @@ window.addEventListener('scroll', () => {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // evita valores negativos
 });
 
+// Expande e oculta o menu mobile
 let isExpanded = false;
 
 function toggleMenu() {
