@@ -20,7 +20,6 @@ html {
 body {
     background-color: var(--cinza);
     overflow-x: hidden;
-    font-size: 0.9vw;
 }
 
 section {
@@ -214,6 +213,7 @@ main button:hover {
     width: 100vw;
     left: 50%;
     transform: translateX(-50%) translateY(-80px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hero-banner::before {
@@ -254,27 +254,32 @@ main button:hover {
 /*Parte referente a section Hospedagens*/
 /*Grid com todos os cards*/
 .cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+    display: flex;
+    flex-direction: row;
     gap: 2rem;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 0 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 1rem 2rem 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cards-container::-webkit-scrollbar {
+    display: none;
 }
 
 .card-hospedagem {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    /* imagem | conteúdo | botão */
-    max-width: 350px;
-    margin: auto;
-    height: 100%;
-    /* Garante preenchimento completo */
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: 480px;
     background-color: #fff;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     transition: all .3s ease-in-out;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
 }
 
 .card-hospedagem:hover {
@@ -282,36 +287,35 @@ main button:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
+/*Parte do carrossel das imagens*/
 .carousel {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
+    height: 40%;
     position: relative;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .carousel-inner {
     display: flex;
-    width: 300%;
-    /* 100% * número de imagens */
+    width: 100%;
     height: 100%;
-    transition: transform 1s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-inner img {
-    width: 100%;
+    flex: 0 0 100%;
     height: 100%;
     object-fit: cover;
 }
+
 
 .descricao-hospedagem {
     padding: 0.5rem 1rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     text-align: center;
 }
 
@@ -321,18 +325,19 @@ main button:hover {
 }
 
 .descricao-hospedagem p {
-    margin-top: 0;
-    margin-bottom: 0;
-    flex-grow: 1;
+    margin: 0;
     font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+    flex-grow: 1;
 }
 
 .btn-reservar {
     width: 80%;
-    font-size: large;
-    margin: 20px auto 10px auto;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
     flex-shrink: 0;
 }
+
 
 .sobre-card {
     display: flex;
@@ -477,12 +482,6 @@ footer a:hover {
 
 /*Parte referente a responsividade do site*/
 @media (max-width: 1440px) {
-    .cards-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        max-width: 650px;
-        /* 2 x 320 + 1 x 2rem */
-    }
-
     header {
         visibility: hidden;
     }
@@ -502,6 +501,7 @@ footer a:hover {
     #mobile-header.expanded {
         width: calc(100vw - 50px);
     }
+
     .mobile-nav {
         max-width: 100%;
         font-size: clamp(0.6rem, 3vw, 1.2rem);
@@ -510,11 +510,6 @@ footer a:hover {
 
 /*Mobile (celulares)*/
 @media (max-width: 768px) {
-    .cards-container {
-        grid-template-columns: 1fr;
-        max-width: 320px;
-    }
-
     nav {
         display: flex;
         flex-wrap: wrap;
