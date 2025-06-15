@@ -24,7 +24,6 @@ body {
 
 section {
     padding: 2rem;
-    margin: auto;
 }
 
 main {
@@ -78,9 +77,9 @@ h2 {
     opacity: 0;
     pointer-events: none;
     padding-left: 1.5rem;
-    padding-right: 60px;
+    padding-right: 70px;
     overflow-x: auto;
-    max-width: calc(100vw - 80px);
+    max-width: calc(100vw - 120px);
     scrollbar-width: none;
     font-size: clamp(0.6rem, 2vw, 1.5rem);
     transition: opacity 0.3s ease-in-out;
@@ -524,5 +523,23 @@ footer a:hover {
         font-size: 0.9rem;
         padding-left: 1rem;
         gap: 5px;
+    }
+
+    .card-avaliacao {
+        flex-direction: row;
+        min-width: 300px;
+        max-width: 100%;
+        height: auto;
+        gap: 1rem;
+    }
+
+    .card-avaliacao .conteudo-avaliacao {
+        flex: 1;
+    }
+
+    .avatar-generico {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
     }
 }
