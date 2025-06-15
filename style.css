@@ -81,7 +81,7 @@ h2 {
     pointer-events: none;
     padding-left: 1.5rem;
     padding-right: 70px;
-    overflow-x: hidden;
+    overflow-x: auto;
     max-width: calc(100vw - 120px);
     scrollbar-width: none;
     font-size: 1rem;
@@ -461,16 +461,17 @@ main button:hover {
 
 /*Parte referente ao footer*/
 footer {
-    background: #fff;
+    background: var(--cor1);
     padding: 1rem;
     display: flex;
     justify-content: center;
     gap: 2rem;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    color: var(--cor4);
 }
 
 footer a {
-    color: var(--cor1);
+    color: var(--cor4);
     font-size: 1.5rem;
     transition: 0.3s;
 }
@@ -478,6 +479,13 @@ footer a {
 footer a:hover {
     color: var(--cor2);
 }
+
+footer p {
+    padding-top: 5px;
+    position: absolute;
+    left: 50px;
+}
+
 
 /*Parte referente a responsividade do site*/
 @media (max-width: 1440px) {
@@ -496,8 +504,8 @@ footer a:hover {
     }
 
     .card-hospedagem {
-        width: 310px;
-        height: 435px;
+        width: 300px;
+        height: 425px;
     }
 }
 
@@ -512,16 +520,16 @@ footer a:hover {
     }
 
     .card-hospedagem {
-        width: 290px;
-        height: 410px;
+        width: 280px;
+        height: 400px;
     }
 }
 
 /*Mobile (celulares)*/
 @media (max-width: 768px) {
     .card-hospedagem {
-        width: 270px;
-        height: 380px;
+        width: 260px;
+        height: 370px;
     }
 
     .hero-content h1 {
