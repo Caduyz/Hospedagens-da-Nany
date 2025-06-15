@@ -23,11 +23,11 @@ body {
 }
 
 section {
-    padding: 2rem;
+    padding: 1rem;
 }
 
 main {
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 /*Estiliza o titulo das sections*/
@@ -67,6 +67,7 @@ h2 {
     cursor: pointer;
     flex-shrink: 0;
     position: absolute;
+    z-index: 1001;
     right: 14px;
 }
 
@@ -78,7 +79,7 @@ h2 {
     pointer-events: none;
     padding-left: 1.5rem;
     padding-right: 70px;
-    overflow-x: auto;
+    overflow-x: hidden;
     max-width: calc(100vw - 120px);
     scrollbar-width: none;
     font-size: clamp(0.6rem, 2vw, 1.5rem);
@@ -308,7 +309,6 @@ main button:hover {
     object-fit: cover;
 }
 
-
 .descricao-hospedagem {
     padding: 0.5rem 1rem;
     flex-grow: 1;
@@ -336,7 +336,6 @@ main button:hover {
     margin-bottom: 10px;
     flex-shrink: 0;
 }
-
 
 .sobre-card {
     display: flex;
@@ -373,7 +372,6 @@ main button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
     padding: 2rem 1rem;
 }
 
@@ -387,8 +385,8 @@ main button:hover {
     display: flex;
     align-items: flex-start;
     background-color: #fff;
-    padding: 2rem;
-    margin: 1rem 0;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
     border-radius: 15px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: all .3s ease-in-out;
@@ -494,6 +492,11 @@ footer a:hover {
         padding-left: 5rem;
         gap: 15px;
     }
+
+    .card-hospedagem {
+        width: 320px;
+        height: 450px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -505,14 +508,18 @@ footer a:hover {
         max-width: 100%;
         font-size: clamp(0.6rem, 3vw, 1.2rem);
     }
+
+    .card-hospedagem {
+        width: 300px;
+        height: 425px;
+    }
 }
 
 /*Mobile (celulares)*/
 @media (max-width: 768px) {
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+    .card-hospedagem {
+        width: 280px;
+        height: 395px;
     }
 
     .hero-content h1 {
