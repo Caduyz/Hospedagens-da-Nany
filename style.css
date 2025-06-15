@@ -497,10 +497,6 @@ footer p {
         visibility: hidden;
     }
 
-    #mobile-header {
-        display: flex;
-    }
-
     .mobile-nav {
         font-size: 1.1rem;
         padding-left: 5rem;
@@ -509,13 +505,17 @@ footer p {
 
     .card-hospedagem {
         width: 300px;
-        height: 425px;
+        height: 445px;
     }
 }
 
 @media (max-width: 1024px) {
     #mobile-header.expanded {
         width: calc(100vw - 50px);
+    }
+
+    #mobile-header {
+        display: flex;
     }
 
     .mobile-nav {
@@ -525,7 +525,7 @@ footer p {
 
     .card-hospedagem {
         width: 280px;
-        height: 400px;
+        height: 420px;
     }
 }
 
@@ -533,7 +533,7 @@ footer p {
 @media (max-width: 768px) {
     .card-hospedagem {
         width: 260px;
-        height: 370px;
+        height: 390px;
     }
 
     .hero-content h1 {
