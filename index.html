@@ -210,15 +210,36 @@
                         </a>
                     </div>
                 </div>
+
+            <!-- Botão de rolagem -->
+            <div class="scroll-button" id="scrollRight">
+                <i class="fas fa-arrow-right"></i>
+            </div>
             </div>
         </section>
 
         <!-- Section Experiências -->
         <section id="experiencias">
             <h2>Experiências</h2>
-            <div class="cards-container">
-                <!-- Cards de experiências aqui -->
-            </div>
+            <div class="card-experiencia">
+                <div class="carousel-experiencia">
+                <div class="carousel-inner-experiencia">
+                    <img src="Imagens/Experiências 1.jpeg" alt="Foto 1" />
+                    <img src="Imagens/Experiências 2.jpeg" alt="Foto 2" />
+                    <img src="Imagens/Experiências 3.jpeg" alt="Foto 3" />
+                    <img src="Imagens/Experiências 4.jpeg" alt="Foto 4" />
+                    <img src="Imagens/Experiências 5.jpeg" alt="Foto 5" />
+                </div>
+                </div>
+                <div class="descricao-experiencia">
+                <p>
+                    Experimente a beleza natural do Lago Oeste com nossos passeios guiados! 🚴‍♂️🏞️<br><br>
+                    Nossos passeios de bike e a pé são projetados para proporcionar uma experiência incrível e inesquecível.
+                    Levaremos você às mais lindas cachoeiras da região, com paisagens deslumbrantes e vistas incríveis.<br><br>
+                    Venha explorar conosco e descubra a magia do Lago Oeste! 🌳💧<br><br>
+                    <strong>Fale conosco e reserve seu passeio.</strong><br>
+                    Vamos criar memórias incríveis juntos! 😊
+                </p>
         </section>
 
         <!-- Section Sobre nós -->
@@ -303,16 +324,23 @@
     </footer>
 
     <aside>
+        <!-- Cabeçalho para Mobile -->
         <div id="mobile-header">
-            <i class="fas fa-bars" id="bars" onclick="toggleMenu()"></i>
-            <div class="mobile-nav" id="mobile-nav">
-                <a href="#inicio" onclick="closeMenu()">Início</a>
-                <a href="#hospedagens" onclick="closeMenu()">Hospedagens</a>
-                <a href="#experiencias" onclick="closeMenu()">Experiências</a>
-                <a href="#sobre" onclick="closeMenu()">Sobre nós</a>
-                <a href="#avaliacoes" onclick="closeMenu()">Avaliações</a>
-                <a href="#contato" onclick="closeMenu()">Contato</a>
+        <div class="top-row">
+            <div class="logo">
+            <i class="fas fa-house"></i>
+            Hospedagens da Nany
             </div>
+            <i class="fas fa-bars" id="bars" onclick="toggleMenu()"></i>
+        </div>
+        <nav class="mobile-nav">
+            <a href="#inicio" onclick="closeMenu()">Início</a>
+            <a href="#hospedagens" onclick="closeMenu()">Hospedagens</a>
+            <a href="#experiencias" onclick="closeMenu()">Experiências</a>
+            <a href="#sobre" onclick="closeMenu()">Sobre nós</a>
+            <a href="#avaliacoes" onclick="closeMenu()">Avaliações</a>
+            <a href="#contato" onclick="closeMenu()">Contato</a>
+        </nav>
         </div>
     </aside>
 
