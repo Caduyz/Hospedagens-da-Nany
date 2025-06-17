@@ -56,20 +56,33 @@ document.addEventListener("DOMContentLoaded", () => {
 // Efeito de shrink do header para PC
 const header = document.querySelector('header');
 let lastScrollTop = 0;
-let lastShrinkScrollTop = 0; // armazena onde o header encolheu
-const expandThreshold = 75;  // mínimo de rolagem pra cima antes de expandir
+let lastShrinkScrollTop = 0;
+const expandThreshold = 75;  // mínimo para expandir
+const shrinkThreshold = 50;  // mínimo para encolher
 
 window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Verifica se está rolando para baixo
+    if (
+        scrollTop > lastScrollTop &&
+        scrollTop > 100 &&
+        scrollTop - lastShrinkScrollTop > shrinkThreshold
+    ) {
         header.classList.add('shrink');
         lastShrinkScrollTop = scrollTop;
-    } else if (lastShrinkScrollTop - scrollTop > expandThreshold) {
-        header.classList.remove('shrink');
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    // Verifica se está rolando para cima
+    else if (
+        scrollTop < lastScrollTop &&
+        lastShrinkScrollTop - scrollTop > expandThreshold
+    ) {
+        header.classList.remove('shrink');
+        lastShrinkScrollTop = scrollTop; // 🔧 ATUALIZA AQUI TAMBÉM!
+    }
+
+    lastScrollTop = Math.max(scrollTop, 0);
 });
 
 
@@ -87,3 +100,30 @@ function closeMenu() {
   isExpanded = false;
   header.classList.remove('expanded');
 }
+
+// Seleciona o botão e o container de cards
+const scrollButton = document.getElementById('scrollRight');
+const cardsContainer = document.querySelector('.cards-container');
+
+// Função para rolar o conteúdo para a direita
+scrollButton.addEventListener('click', () => {
+    const cardWidth = document.querySelector('.card-hospedagem').offsetWidth; // Largura de um card
+    const totalWidth = cardsContainer.scrollWidth; // Largura total do container
+    const visibleWidth = cardsContainer.clientWidth; // Largura visível do container
+    const currentScroll = cardsContainer.scrollLeft; // Posição atual de rolagem
+
+    // Verifique se chegou no final do container
+    if (currentScroll + visibleWidth >= totalWidth - 20) {
+        // Se chegou no final, volte para o início
+        cardsContainer.scrollTo({
+            left: 0,
+            behavior: 'smooth' // Rolagem suave
+        });
+    } else {
+        // Se não, role para a direita
+        cardsContainer.scrollBy({
+            left: cardWidth, // O +20 é o espaço entre os cards
+            behavior: 'smooth' // Rolagem suave
+        });
+    }
+});
