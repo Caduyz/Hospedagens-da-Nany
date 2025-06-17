@@ -384,7 +384,7 @@ main button:hover {
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
     height: fit-content;
     transform: translateY(0);
-    display: none;
+    display: flex;
 }
 
 /*Parte referente a section Experiências*/
@@ -661,14 +661,14 @@ footer p {
         width: 280px;
         height: 420px;
     }
-
-    .scroll-button {
-        display: flex;
-    }
 }
 
 /*Mobile (celulares)*/
 @media (max-width: 768px) {
+    .scroll-button {
+        display: none;
+    }
+    
     .card-hospedagem {
         width: 260px;
         height: 390px;
