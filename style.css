@@ -24,6 +24,8 @@ body {
 
 section {
     padding: 1rem;
+    margin-bottom: 4.5rem;
+    scroll-margin-top: 4rem;
 }
 
 main {
@@ -225,7 +227,7 @@ main button:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('Imagens/Home Page.jpeg') center/cover no-repeat;
+    background: url('Imagens/Home Page.jpg') center/cover no-repeat;
     filter: brightness(0.75);
     z-index: 0;
 }
@@ -289,6 +291,11 @@ main button:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
+.card-invisivel {
+    scroll-snap-align: start;
+    width: 10px;
+}
+
 /*Parte do carrossel das imagens*/
 .carousel {
     width: 100%;
@@ -327,47 +334,50 @@ main button:hover {
 
 .descricao-hospedagem p {
     margin: 0;
-    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
     flex-grow: 1;
 }
 
 .btn-reservar {
     width: 80%;
     font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
     flex-shrink: 0;
 }
 
+/*Parte referente a section Sobre Mim*/
 .sobre-card {
     display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    background: white;
-    padding: 1rem 1.5rem;
-    border-radius: 15px;
-    gap: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    max-width: 1720px;
-    margin: 1rem auto;
+    align-items: stretch;
+    gap: 2rem;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .sobre-card img {
-    width: 30%;
+    width: 40%;
     height: auto;
-    border-radius: 15px;
+    border-radius: 12px;
+    object-fit: cover;
     flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .sobre-card p {
-    flex-grow: 1;
+    flex: 1;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.6;
     margin: 0;
-    padding: 0;
-    width: 100%;
-    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-    line-height: 1.5;
-    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 
 /*Parte referente a section Avaliacoes*/
 #avaliacoes {
@@ -493,16 +503,6 @@ footer p {
 
 /*Parte referente a responsividade do site*/
 @media (max-width: 1440px) {
-    header {
-        visibility: hidden;
-    }
-
-    .mobile-nav {
-        font-size: 1.1rem;
-        padding-left: 5rem;
-        gap: 15px;
-    }
-
     .card-hospedagem {
         width: 300px;
         height: 445px;
@@ -512,6 +512,10 @@ footer p {
 @media (max-width: 1024px) {
     #mobile-header.expanded {
         width: calc(100vw - 50px);
+    }
+
+    header {
+        visibility: hidden;
     }
 
     #mobile-header {
@@ -562,5 +566,21 @@ footer p {
         flex-shrink: 0;
         width: 50px;
         height: 50px;
+    }
+
+    .sobre-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sobre-card img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .sobre-card p {
+        align-items: flex-start;
+        margin-top: 1rem;
     }
 }
