@@ -1,48 +1,77 @@
 // Efeito de carrossel nas fotos dos cards das hospedagens
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll('.card-hospedagem');
+    const carrosselControllers = new Map(); // armazena o controle de cada card
 
-    cards.forEach(card => {
+    // Funções reutilizáveis
+    function startCarousel(card) {
         const inner = card.querySelector('.carousel-inner');
         const totalImages = inner.children.length;
         let index = 0;
-        let interval;
 
-        const startCarousel = () => {
-            interval = setInterval(() => {
-                index = (index + 1) % totalImages;
-                inner.style.transform = `translateX(-${index * 100}%)`;
-            }, 2000); // Intervalo entre cada foto
-        };
+        const interval = setInterval(() => {
+            index = (index + 1) % totalImages;
+            inner.style.transform = `translateX(-${index * 100}%)`;
+        }, 2000);
 
-        const stopCarousel = () => {
-            clearInterval(interval);
-            index = 0; // volta para a primeira imagem
-            inner.style.transform = `translateX(0%)`;
-        };
+        carrosselControllers.set(card, { interval, index, inner });
+    }
 
-        card.addEventListener('mouseenter', startCarousel);
-        card.addEventListener('mouseleave', stopCarousel);
+    function stopCarousel(card) {
+        const controller = carrosselControllers.get(card);
+        if (controller) {
+            clearInterval(controller.interval);
+            controller.inner.style.transform = `translateX(0%)`;
+            carrosselControllers.delete(card);
+        }
+    }
+
+    // Eventos de mouse (para desktop)
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => startCarousel(card));
+        card.addEventListener('mouseleave', () => stopCarousel(card));
     });
+
+    // Detectar visibilidade para dispositivos móveis
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const card = entry.target;
+
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile && entry.isIntersecting) {
+                startCarousel(card);
+            } else {
+                stopCarousel(card);
+            }
+        });
+    }, {
+        threshold: 0.6 // pelo menos 60% do card visível
+    });
+
+    cards.forEach(card => observer.observe(card));
 });
+
 
 // Efeito de shrink do header para PC
 const header = document.querySelector('header');
 let lastScrollTop = 0;
+let lastShrinkScrollTop = 0; // armazena onde o header encolheu
+const expandThreshold = 75;  // mínimo de rolagem pra cima antes de expandir
 
 window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // rolando para baixo e já passou de 100px - retrai o header
         header.classList.add('shrink');
-    } else {
-        // rolando para cima - expande o header
+        lastShrinkScrollTop = scrollTop;
+    } else if (lastShrinkScrollTop - scrollTop > expandThreshold) {
         header.classList.remove('shrink');
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // evita valores negativos
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
 
 // Expande e oculta o menu mobile
 let isExpanded = false;
